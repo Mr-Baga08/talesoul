@@ -240,6 +240,24 @@ class CommunityReplyResponse(BaseModel):
         from_attributes = True
 
 
+# ===== Payment Schemas =====
+class PaymentIntentCreate(BaseModel):
+    booking_id: Optional[int] = None
+    course_id: Optional[int] = None
+
+
+class PaymentIntentResponse(BaseModel):
+    client_secret: str
+    payment_intent_id: str
+    amount: float
+
+
+class PaymentConfirm(BaseModel):
+    payment_intent_id: str
+    booking_id: Optional[int] = None
+    course_id: Optional[int] = None
+
+
 # ===== Generic Responses =====
 class MessageResponse(BaseModel):
     message: str

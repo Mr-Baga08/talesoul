@@ -5,6 +5,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Mentors from './pages/Mentors';
+import MentorDetail from './pages/MentorDetail';
+import MyBookings from './pages/MyBookings';
+import Courses from './pages/Courses';
+import CourseDetail from './pages/CourseDetail';
+import MyCourses from './pages/MyCourses';
+import Community from './pages/Community';
+import PostDetail from './pages/PostDetail';
 import './App.css';
 
 // Protected Route Component
@@ -65,11 +73,66 @@ function AppContent() {
           path="/consultant"
           element={
             <Layout>
-              <div className="page-placeholder">
-                <h1>Find Consultants</h1>
-                <p>Browse our expert mentors and consultants</p>
-              </div>
+              <Mentors />
             </Layout>
+          }
+        />
+
+        <Route
+          path="/mentors"
+          element={
+            <Layout>
+              <Mentors />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/mentor/:mentorId"
+          element={
+            <Layout>
+              <MentorDetail />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/my-bookings"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <MyBookings />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/courses"
+          element={
+            <Layout>
+              <Courses />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/course/:courseId"
+          element={
+            <Layout>
+              <CourseDetail />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/my-courses"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <MyCourses />
+              </Layout>
+            </ProtectedRoute>
           }
         />
 
@@ -77,10 +140,16 @@ function AppContent() {
           path="/community"
           element={
             <Layout>
-              <div className="page-placeholder">
-                <h1>Community</h1>
-                <p>Join discussions and connect with others</p>
-              </div>
+              <Community />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/community/post/:postId"
+          element={
+            <Layout>
+              <PostDetail />
             </Layout>
           }
         />

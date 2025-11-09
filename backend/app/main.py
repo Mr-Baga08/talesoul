@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 from app.database import init_db
-from app.routers import auth, bookings, courses, community, admin
+from app.routers import auth, bookings, courses, community, admin, payments
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -33,6 +33,7 @@ app.include_router(bookings.router, prefix="/api/v1/bookings", tags=["Bookings"]
 app.include_router(courses.router, prefix="/api/v1/courses", tags=["Courses"])
 app.include_router(community.router, prefix="/api/v1/community", tags=["Community"])
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
+app.include_router(payments.router, prefix="/api/v1/payments", tags=["Payments"])
 
 
 @app.on_event("startup")
