@@ -1,0 +1,82 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: #D96F62;
+}
+
+.page-placeholder {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.page-placeholder h1 {
+  color: #733B34;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.page-placeholder p {
+  color: #666;
+  font-size: 1.2rem;
+}
+
+/* Common Button Styles */
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: #D96F62;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #C25A4F;
+}
+
+.btn-outline {
+  background: white;
+  border: 2px solid #D96F62;
+  color: #D96F62;
+}
+
+.btn-outline:hover {
+  background: #D96F62;
+  color: white;
+}
