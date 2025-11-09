@@ -1,0 +1,268 @@
+.home-page {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #FFE8E4 0%, #FFF5F3 100%);
+  padding: 4rem 0;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-content h1 {
+  color: #733B34;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icons {
+  display: flex;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  margin-left: -0.5rem;
+}
+
+.btn-hero {
+  background: #A26357;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn-hero:hover {
+  background: #8A5449;
+}
+
+.hero-images {
+  display: flex;
+  justify-content: center;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.image-card {
+  background: white;
+  border-radius: 15px;
+  padding: 3rem;
+  font-size: 4rem;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image-card:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+/* Features Section */
+.features-section {
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.features-section h2 {
+  color: #733B34;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: auto 50px auto 50px auto 50px auto;
+  gap: 2rem;
+  align-items: center;
+  margin: 4rem 0;
+}
+
+.feature-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+  color: #733B34;
+  margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.feature-arrow {
+  color: #D96F62;
+  font-size: 1.5rem;
+}
+
+/* Mentors Section */
+.mentors-section {
+  background: #F9F9F9;
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.mentors-section h2 {
+  color: #733B34;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.mentors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.mentor-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.mentor-card:hover {
+  transform: translateY(-5px);
+}
+
+.mentor-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #FFF4E6;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.mentor-avatar {
+  font-size: 4rem;
+  margin: 1rem 0;
+}
+
+.mentor-card h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.mentor-card p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.mentor-tag {
+  background: #FFE8E4;
+  color: #D96F62;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #D96F62 0%, #A26357 100%);
+  color: white;
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-arrow {
+    display: none;
+  }
+
+  .mentors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

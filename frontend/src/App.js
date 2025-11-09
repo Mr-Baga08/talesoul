@@ -1,85 +1,141 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Login from './pages/Login';
 import './App.css';
 
-function App() {
-  const [apiStatus, setApiStatus] = useState(null);
-  const [loading, setLoading] = useState(true);
+// Protected Route Component
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth();
 
-  useEffect(() => {
-    // Check API health
-    fetch('/api/v1/health')
-      .then(res => res.json())
-      .then(data => {
-        setApiStatus(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('API health check failed:', err);
-        setApiStatus({ status: 'error', message: err.message });
-        setLoading(false);
-      });
-  }, []);
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
 
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
+
+// Layout wrapper
+const Layout = ({ children }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to TaleSoul</h1>
-        <p className="tagline">Your Mentorship & Learning Platform</p>
-
-        <div className="status-card">
-          <h2>System Status</h2>
-          {loading ? (
-            <p>Checking API status...</p>
-          ) : (
-            <div>
-              <p>API Status: <span className={apiStatus?.status === 'ok' ? 'status-ok' : 'status-error'}>
-                {apiStatus?.status || 'Unknown'}
-              </span></p>
-              {apiStatus?.service && <p>Service: {apiStatus.service}</p>}
-              {apiStatus?.version && <p>Version: {apiStatus.version}</p>}
-            </div>
-          )}
-        </div>
-
-        <div className="features">
-          <h2>Platform Features</h2>
-          <div className="feature-grid">
-            <div className="feature-card">
-              <h3>Mentor Booking</h3>
-              <p>Connect with experienced mentors and book 1-on-1 sessions</p>
-            </div>
-            <div className="feature-card">
-              <h3>Course Marketplace</h3>
-              <p>Browse and enroll in courses created by industry experts</p>
-            </div>
-            <div className="feature-card">
-              <h3>Community Forum</h3>
-              <p>Join discussions, share knowledge, and grow together</p>
-            </div>
-            <div className="feature-card">
-              <h3>Admin Dashboard</h3>
-              <p>Comprehensive tools for platform management</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="api-info">
-          <h2>API Documentation</h2>
-          <p>Access the interactive API documentation at: <a href="/docs" target="_blank" rel="noopener noreferrer">/docs</a></p>
-        </div>
-
-        <div className="next-steps">
-          <h2>Next Steps</h2>
-          <ol>
-            <li>Build your React components for authentication, booking, courses, and community</li>
-            <li>Integrate with the backend API endpoints</li>
-            <li>Add payment integration (Stripe/Razorpay)</li>
-            <li>Implement real-time features if needed (WebSockets)</li>
-            <li>Deploy to your server and scale as needed</li>
-          </ol>
-        </div>
-      </header>
+    <div className="app-layout">
+      <Header />
+      <main className="main-content">{children}</main>
+      <Footer />
     </div>
+  );
+};
+
+function AppContent() {
+  return (
+    <Router>
+      <Routes>
+        {/* Public Routes */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        {/* Routes with Layout */}
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/why-us"
+          element={
+            <Layout>
+              <div className="page-placeholder">
+                <h1>Why Us</h1>
+                <p>Coming soon...</p>
+              </div>
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/consultant"
+          element={
+            <Layout>
+              <div className="page-placeholder">
+                <h1>Find Consultants</h1>
+                <p>Browse our expert mentors and consultants</p>
+              </div>
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/community"
+          element={
+            <Layout>
+              <div className="page-placeholder">
+                <h1>Community</h1>
+                <p>Join discussions and connect with others</p>
+              </div>
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/soul-coin"
+          element={
+            <Layout>
+              <div className="page-placeholder">
+                <h1>Soul Coin</h1>
+                <p>Coming soon...</p>
+              </div>
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/blog"
+          element={
+            <Layout>
+              <div className="page-placeholder">
+                <h1>Blog</h1>
+                <p>Read our latest articles and insights</p>
+              </div>
+            </Layout>
+          }
+        />
+
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <div className="page-placeholder">
+                  <h1>Dashboard</h1>
+                  <p>Welcome to your dashboard</p>
+                </div>
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Catch all - redirect to home */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
